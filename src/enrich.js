@@ -1,7 +1,7 @@
 const j = require('jscodeshift');
 
 const renderTemplate = templateString => `
-	_render(props) {
+	render(props) {
 		return html\`${templateString}\`
 	}
 `.replace(/\t/gi, '');
