@@ -6,12 +6,21 @@ const renderTemplate = templateString => `
 	}
 `.replace(/\t/gi, '');
 
+function test(item, source) {
+	console.log('item:' + item.node.name.toString());
+	if (source.indexOf('extends LitElement') === -1) {
+		return j(item).replaceWith(`${item.node.name} extends LitElement`);
+	}
+
+	return j(item).replaceWith(`${item.node.name}`);
+}
+
 const addLitReferences = source => j(source)
 	.find(j.ExportDefaultDeclaration)
 	.insertBefore('import {LitElement, html} from \'@polymer/lit-element\'')
 	.find(j.Identifier)
 	.at(0)
-	.forEach(item => j(item).replaceWith(`${item.node.name} extends LitElement`))
+	.forEach(item => test(item, source))
 	.toSource();
 
 const addRenderTemplate = (jsSource, templateString) => j(jsSource)
