@@ -16,8 +16,8 @@ module.exports = async function (source) {
 		.then(res => res.css)
 		.catch(error => cb(error)) : style.value;
 
-	const templateString = `<style>${css}</style>${template.value}`;
-	const enriched = enrich(script.value, templateString);
+	// const templateString = `<style>${css}</style>${template?template.value:""}`;
+	// const enriched = enrich(script.value, templateString);
 
 	debug(enriched);
 
