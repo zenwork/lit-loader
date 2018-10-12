@@ -23,13 +23,18 @@ const addLitReferences = source => j(source)
 	.forEach(item => test(item, source))
 	.toSource();
 
-const addRenderTemplate = (jsSource, templateString) => j(jsSource)
-	.find(j.ClassDeclaration)
-	.find(j.ClassBody)
-	.find(j.MethodDefinition)
-	.at(-1)
-	.forEach(path => j(path).insertAfter(renderTemplate(templateString)))
-	.toSource();
+const addRenderTemplate = (jsSource, templateString) => {
+	if (templateString) {
+		return j(jsSource)
+			.find(j.ClassDeclaration)
+			.find(j.ClassBody)
+			.find(j.MethodDefinition)
+			.at(-1)
+			.forEach(path => j(path).insertAfter(renderTemplate(templateString)))
+			.toSource();
+	}
+	return jsSource;
+};
 
 module.exports = (jsSource, templateString) =>
 	addRenderTemplate(addLitReferences(jsSource), templateString);

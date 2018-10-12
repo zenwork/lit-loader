@@ -23,7 +23,7 @@ ${SCRIPT}
 
 	t.true(enriched.includes('import {LitElement, html} from \'@polymer/lit-element\''), 'Includes import LitElement');
 	t.true(enriched.includes('CounterElement extends LitElement {'), 'Includes extends LitElement');
-	t.true(enriched.includes('_render(props)'), 'Includes render function');
+	t.true(enriched.includes('render(props)'), 'Includes render function');
 	t.true(enriched.includes('return html`'), 'Includes return html function');
 });
 
@@ -45,6 +45,6 @@ ${SCRIPT2}
 
 	t.true(enriched.includes('import {LitElement, html} from \'@polymer/lit-element\''), 'Includes import LitElement');
 	t.true(enriched.includes('CounterElement extends LitElement {'), 'Includes extends LitElement');
-	t.true(enriched.includes('_render(props)'), 'Includes render function');
+	t.true(enriched.includes('render(props)'), 'Includes render function');
 	t.true(enriched.includes('return html`'), 'Includes return html function');
 });
